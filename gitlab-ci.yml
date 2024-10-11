@@ -1,0 +1,28 @@
+image: gcc
+
+default:
+  tags:
+    - any
+
+stages:
+  - test
+  - style_check
+
+test:
+  stage: test
+  script:
+    - echo "Build and running tests..."
+    - cd src
+    - make test
+  allow_failure: true
+  after_script:
+  - bash ./tg_notifications.sh
+
+style_check:
+  stage: style_check
+  script:
+    - echo "Checking style..."
+    - cd src
+    - make style_check
+  after_script:
+  - bash ./tg_notifications.sh

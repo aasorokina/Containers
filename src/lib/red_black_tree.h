@@ -55,8 +55,6 @@ class RedBlackTree {
   s21::vector<std::pair<iterator, bool>> insert_many(Args &&...args);
   iterator multi_insert(const data_type &value);
 
-  void print_tree();
-
  protected:
   enum Color { RED, BLACK };
 
@@ -80,8 +78,6 @@ class RedBlackTree {
   static Node *find_max(Node *node);
   static Node *find_min(Node *node);
   Node *copy_tree(Node *node);
-  void print_node(Node *node);
-  void print_recursive(Node *root, int space);
 
   bool less(const K &left_value, const K &right_value) const;
   bool less(const std::pair<K, V> &left_value,

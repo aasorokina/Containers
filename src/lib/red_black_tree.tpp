@@ -664,54 +664,6 @@ TreeConstIterator<D, K, V>::TreeConstIterator(
           const_cast<typename RedBlackTree<D, K, V>::Node*>(node),
           const_cast<RedBlackTree<D, K, V>*>(rbtree_)) {}
 
-/*
-*****************************
-Print tree methods
-*****************************
-*/
-
-template <typename D, typename K, typename V>
-void RedBlackTree<D, K, V>::print_node(Node* node) {
-  if (node == nullptr || node->is_leaf) {
-    printf("\x1b[34m");
-    std::cout << "null";
-    printf("\x1b[0m");
-  } else if (node->color == RED) {
-    printf("\x1b[31m");
-    std::cout << node->data /* .first */ << " " << node->data /* .second */;
-    printf("\x1b[0m");
-  } else if (node->color == BLACK) {
-    printf("\x1b[34m");
-    std::cout << node->data /* .first */ << " " << node->data /* .second */;
-    printf("\x1b[0m");
-  }
-}
-
-template <typename D, typename K, typename V>
-void RedBlackTree<D, K, V>::print_recursive(Node* root, int space) {
-  constexpr int COUNT = 5;
-  if (root == nullptr || root->is_leaf) {
-    std::cout << "null tree" << std::endl;
-    return;
-  } else {
-    space += COUNT;
-    if (root->right != nullptr && !root->right->is_leaf) {
-      print_recursive(root->right, space);
-    }
-    std::cout << std::endl;
-    for (int i = COUNT; i < space; i++) std::cout << " ";
-    print_node(root);
-    std::cout << std::endl;
-    if (root->left != nullptr && !root->left->is_leaf) {
-      print_recursive(root->left, space);
-    }
-  }
-}
-
-template <typename D, typename K, typename V>
-void RedBlackTree<D, K, V>::print_tree() {
-  print_recursive(root_, 0);
-}
 }  // namespace s21
 
 #endif
